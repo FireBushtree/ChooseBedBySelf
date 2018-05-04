@@ -11,8 +11,13 @@
 |
 */
 
-Route::get('/test', function () {
-    return App\Entity\School::find(1);
+Route::group(['prefix' => '/admin', 'namespace' => 'Admin'], function () {
+    Route::get('/login', 'UserController@login');
+    Route::post('/login', 'UserController@saveLogin');
+    Route::get('/index', 'UserController@index');
+    Route::get('/logout', 'UserController@logout');
+    Route::get('/change-password', 'UserController@changePassword');
+    Route::get('/detail', 'UserController@detail');
 });
 
 Route::get('/', function () {
