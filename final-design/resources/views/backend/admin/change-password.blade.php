@@ -1,3 +1,10 @@
+@extends('backend.app')
+
+@section('title')
+  Change Password
+@endsection
+
+@section('content')
 <h1 class="text-center">Change password</h1>
 
 <div class="row">
@@ -24,3 +31,4 @@
 
   </div>
 </div>
+@endsection

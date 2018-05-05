@@ -15,8 +15,8 @@
     <div class="collapse navbar-collapse" id="backup-navbar">
 
       <ul class="nav navbar-nav navbar-left">
-        <li :class="{active: status=='school'}" @click="school"><a href="#">School</a></li>
-        <li :class="{active: status=='academy'}"  @click="academy"><a href="#">Academy</a></li>
+        <li :class="{active: status=='school'}"><a href="#">School</a></li>
+        <li :class="{active: status=='academy'}"><a href="#">Academy</a></li>
         <li :class="{active: status=='apartment'}" class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             Apartment <b class="caret"></b>
@@ -38,8 +38,8 @@
             <li>
               <a href="#" data-toggle="modal" data-target="#logout">Logout</a>
             </li>
-            <li @click="detail"><a href="#">个人信息</a></li>
-            <li @click="changePassword"><a href="#">Change password</a></li>
+            <li><a href="{{ url('/admin/detail') }}">Personal information</a></li>
+            <li><a href="{{ url('/admin/change-password') }}">Change password</a></li>
           </ul>
         </li>
       </ul>
@@ -52,18 +52,18 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <span class="modal-title">提示</span>
+          <span class="modal-title">Tip</span>
         </div>
 
         <div class="modal-body">
-          您确定要注销吗？
+          Are you sure to logout？
         </div>
 
         <div class="modal-footer">
-          <button type="button" class="btn btn-warning">
-            <a href="{{ url('/admin/logout') }}">确定</a>
+          <button type="button" class="btn btn-warning" @click="logout">
+            <span>Sure</span>
           </button>
-          <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Backend;
 
 use App\Http\Entity\User;
 use App\Http\Controllers\Controller;
@@ -17,7 +17,7 @@ class UserController extends Controller
      */
     public function login()
     {
-        return view('admin.login');
+        return view('backend.admin.login');
     }
 
     /**
@@ -36,7 +36,7 @@ class UserController extends Controller
             return redirect('/admin/index');
         } else {
 
-            return view('admin.login', [
+            return view('backend.admin.login', [
                 'msg' => 'Username or password is incorrect',
             ]);
         }
@@ -49,7 +49,7 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        return view('admin.index');
+        return view('backend.admin.index');
     }
 
     /**
@@ -71,7 +71,7 @@ class UserController extends Controller
      */
     public function changePassword()
     {
-        return view('admin.change-password');
+        return view('backend.admin.change-password');
     }
 
     /**
@@ -81,9 +81,19 @@ class UserController extends Controller
      */
     public function detail(Request $request)
     {
-        return view('admin.detail',[
+        return view('backend.admin.detail',[
             'user' => $request->session()->get('user'),
         ]);
+    }
+
+    /**
+     * Edit the new password
+     *
+     * @return string
+     */
+    public function saveChangePassword(Request $request)
+    {
+        dd($request->all());
     }
 
 }
