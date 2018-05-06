@@ -77,6 +77,7 @@ class UserController extends Controller
     /**
      * To show the detail of a user's information
      *
+     * @param Request
      * @return view
      */
     public function detail(Request $request)
@@ -89,11 +90,30 @@ class UserController extends Controller
     /**
      * Edit the new password
      *
+     * @param Request
      * @return string
      */
     public function saveChangePassword(Request $request)
     {
-        dd($request->all());
+        //1. Validate the new password is repeated correctly
+        if ($request->newPassword != $request->retypePassword) {
+
+            return back()->with(['tip' => 'The retype password does not match.']);
+        }
+
+        //2. Vaildate the old password is correct
+        $user = User::where(['name' => session()->get('user')->name])->first();
+
+        if (Crypt::decrypt($user->password) != $request->oldPassword) {
+
+            return back()->with(['tip' => 'Old password is incorrect.']);
+        }
+
+        //3. Save the new password
+        $user->password = Crypt::encrypt($request->newPassword);
+        $user->save();
+
+        return redirect('/admin/index')->with(['msg' => 'Change password successfully.']);
     }
 
 }

@@ -47,7 +47,7 @@
   <div v-if="status == 'edit'">
     <h1 class="text-center">Edit</h1>
 
-    {!! Form::open(['url' => 'saveDetail', 'method' => 'post', 'class' => 'form-horizontal']) !!}
+    {!! Form::open(['url' => '/admin/saveDetail', 'method' => 'post', 'class' => 'form-horizontal']) !!}
 
       <div class="row add-padding-10">
         {!! Form::label('name', 'Username', ['class' => 'col-lg-offset-4 col-lg-2']) !!}
@@ -59,16 +59,18 @@
       <div class="row add-padding-10">
         {!! Form::label('telephone_num', 'Telephone Number', ['class' => 'col-lg-offset-4 col-lg-2']) !!}
         <div class="col-lg-3">
-          {!! Form::text('telephone_num', $user->telephone_num, ['class' => 'form-control']) !!}
+          {!! Form::text('telephone_num', $user->telephone_num, ['class' => 'form-control', 'v-model' => 'telephoneNum', '@blur' => 'checkTelephoneNum']) !!}
         </div>
       </div>
+      <div class="col-lg-offset-6 col-lg-3 text-danger" v-html="telephoneNumTip"></div>
 
       <div class="row add-padding-10">
         {!! Form::label('email', 'E-mail', ['class' => 'col-lg-offset-4 col-lg-2']) !!}
         <div class="col-lg-3">
-          {!! Form::text('email', $user->email, ['class' => 'form-control']) !!}
+          {!! Form::text('email', $user->email, ['class' => 'form-control', 'v-model' => 'email', '@blur' => 'checkEmail']) !!}
         </div>
       </div>
+      <div class="col-lg-offset-6 col-lg-3 text-danger" v-html="emailTip"></div>
 
       <div class="row">
         <div class="col-lg-offset-4 col-lg-3">

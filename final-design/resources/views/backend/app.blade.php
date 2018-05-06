@@ -10,25 +10,46 @@
 </head>
 <body>
   @include('util.nav')
-
-  <div class="alert alert-info alert-dismissable">
-    <button type="button" class="close" data-dismiss="alert"
-            aria-hidden="true">
-        &times;
-    </button>
-    Tip-message
-  </div>
-
   @yield('header')
 
   <div class="container" id="content">
+    @if(session('msg'))
+      <div class="row">
+        <div class="col-lg-offset-4 col-lg-4">
+          <div class="alert alert-success alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert"
+                    aria-hidden="true">
+                &times;
+            </button>
+            {!! session('msg') !!}
+          </div>
+        </div>
+      </div>
+    @endif
+
+    @if(session('tip'))
+      <div class="row">
+        <div class="col-lg-offset-4 col-lg-4">
+          <div class="alert alert-warning alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert"
+                    aria-hidden="true">
+                &times;
+            </button>
+            {!! session('tip') !!}
+          </div>
+        </div>
+      </div>
+    @endif
+
     @yield('content')
   </div>
 
   <script src="{{asset('js/vue.js')}}"></script>
   <script src="{{asset('js/jquery.js')}}"></script>
   <script src="{{asset('js/bootstrap.min.js')}}"></script>
-  <script src="{{asset('js/backend/admin/nav.vue.js')}}"></script>
+  <script src="{{asset('js/axios.min.js')}}"></script>
+  <script src="{{asset('js/common.vue.js')}}"></script>
+  <script src="{{asset('js/backend/nav.vue.js')}}"></script>
   @yield('js')
 </body>
 </html>
