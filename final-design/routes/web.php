@@ -12,6 +12,7 @@
 */
 
 Route::group(['prefix' => '/admin', 'namespace' => 'Backend'], function () {
+
     Route::get('/login', 'UserController@login');
     Route::post('/login', 'UserController@saveLogin');
     Route::get('/index', 'UserController@index');
@@ -19,6 +20,7 @@ Route::group(['prefix' => '/admin', 'namespace' => 'Backend'], function () {
     Route::get('/change-password', 'UserController@changePassword');
     Route::post('/change-password', 'UserController@saveChangePassword');
     Route::get('/detail', 'UserController@detail');
+    Route::post('/detail', 'UserController@saveDetail');
 
     Route::resource('/school', 'SchoolController');
 });

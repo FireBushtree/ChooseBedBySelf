@@ -48,7 +48,7 @@
   <script src="{{asset('js/jquery.js')}}"></script>
   <script src="{{asset('js/bootstrap.min.js')}}"></script>
   <script src="{{asset('js/axios.min.js')}}"></script>
-  <script src="{{asset('js/common.vue.js')}}"></script>
+  <script src="{{asset('js/common.js')}}"></script>
   <script src="{{asset('js/backend/nav.vue.js')}}"></script>
   @yield('js')
 </body>

@@ -13,31 +13,17 @@ var changePassword = new Vue({
 
   methods: {
     checkOldPassword: function () {
+      let result = Check.checkEmpty(this.oldPassword, 'Old password');
+      this.oldPasswordTip = result.tipMessage;
 
-      if (!this.oldPassword) {
-        this.oldPasswordTip = 'Old password can not be empty.';
-
-        return false;
-      } else {
-        this.oldPasswordTip = null;
-
-        return true;
-      }
-
+      return result.status;
     },
 
     checkNewPassword: function () {
+      let result = Check.checkEmpty(this.newPassword, 'New password');
+      this.newPasswordTip = result.tipMessage;
 
-      if (!this.newPassword) {
-        this.newPasswordTip = 'New password can not be empty.';
-
-        return false;
-      } else {
-        this.newPasswordTip = null;
-
-        return true;
-      }
-
+      return result.status;
     },
 
     checkRetypePassword: function () {
@@ -64,6 +50,7 @@ var changePassword = new Vue({
       let retypePasswordResult = this.checkRetypePassword();
 
       if (oldPasswordResult && newPasswordResult && retypePasswordResult) {
+
         return true;
       } else {
         e.preventDefault();

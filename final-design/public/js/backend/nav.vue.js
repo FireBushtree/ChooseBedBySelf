@@ -9,7 +9,6 @@ var navbar = new Vue({
     var path = location.pathname;
     var params = path.split('/');
     this.status = params[2];
-    console.log(this.status);
   },
 
   methods: {

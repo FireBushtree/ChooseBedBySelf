@@ -44,6 +44,7 @@ var loginForm = new Vue({
       let passwordResult = this.checkPassword();
 
       if (nameResult && passwordResult) {
+
         return true;
       } else {
         e.preventDefault();

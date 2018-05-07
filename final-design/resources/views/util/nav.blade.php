@@ -15,7 +15,7 @@
     <div class="collapse navbar-collapse" id="backup-navbar">
 
       <ul class="nav navbar-nav navbar-left">
-        <li :class="{active: status=='school'}"><a href="#">School</a></li>
+        <li :class="{active: status=='school'}"><a href="{{ url('admin/school') }}">School</a></li>
         <li :class="{active: status=='academy'}"><a href="#">Academy</a></li>
         <li :class="{active: status=='apartment'}" class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">

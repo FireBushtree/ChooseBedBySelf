@@ -6,6 +6,7 @@ use App\Http\Entity\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -101,7 +102,7 @@ class UserController extends Controller
             return back()->with(['tip' => 'The retype password does not match.']);
         }
 
-        //2. Vaildate the old password is correct
+        //2. Validate the old password is correct
         $user = User::where(['name' => session()->get('user')->name])->first();
 
         if (Crypt::decrypt($user->password) != $request->oldPassword) {
@@ -114,6 +115,37 @@ class UserController extends Controller
         $user->save();
 
         return redirect('/admin/index')->with(['msg' => 'Change password successfully.']);
+    }
+
+    /**
+     * To save the information that user edited.
+     *
+     * @param Request
+     *
+     * @return redirect ['success' => '/admin/index', 'fail' => 'back']
+     */
+    public function saveDetail(Request $request)
+    {
+        //1. Verify the inputed information
+        $rules = [
+            'telephoneNum' => 'required',
+            'email' => 'required | email',
+        ];
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+
+            return back()->with(['tip' => $validator->errors()->first()]);
+        }
+
+        //2. Save the inputed information
+        $user = session()->get('user');
+        $user->telephone_num = $request->telephoneNum;
+        $user->email = $request->email;
+        $user->save();
+        session(['user' => $user]);
+
+        return redirect('/admin/index')->with(['msg' => 'Edit information successfully.']);
     }
 
 }

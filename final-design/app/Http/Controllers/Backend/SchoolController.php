@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
+use App\Http\Entity\School;
 use App\Http\Controllers\Controller;
 
 class SchoolController extends Controller
@@ -14,7 +15,9 @@ class SchoolController extends Controller
      */
     public function index()
     {
-        return view('backend.school.index');
+        $school = School::where(['id' => session()->get('user')->school_id])->first();
+
+        return view('backend.school.index', compact('school'));
     }
 
     /**

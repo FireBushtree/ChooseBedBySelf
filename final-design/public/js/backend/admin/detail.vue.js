@@ -5,7 +5,7 @@ var detail = new Vue({
     status: 'detail',
 
     telephoneNum: null,
-    email: null,
+    email: '',
 
     telephoneNumTip: null,
     emailTip: null,
@@ -25,32 +25,32 @@ var detail = new Vue({
     },
 
     checkTelephoneNum: function () {
+      let result = Check.checkEmpty(this.telephoneNum, 'Telephone number');
+      this.telephoneNumTip = result.tipMessage;
 
-      if (!this.telephoneNum) {
-        this.telephoneNumTip = 'Telephone num can not be empty.';
-
-        return false;
-      } else {
-        this.telephoneNumTip = null;
-
-        return true;
-      }
-
+      return result.status;
     },
 
     checkEmail: function () {
+      let result =  Check.checkEmpty(this.email, 'E-mail');
+      this.emailTip = result.tipMessage;
 
-      if (!this.email) {
-        this.emailTip = 'E-mail can not be empty.';
+      return result.status;
+    },
 
-        return false;
-      } else {
-        this.emailTip = null;
+    saveDetail: function (e) {
+      let telephoneNumResult = this.checkTelephoneNum();
+      let emailResult = this.checkEmail();
+
+      if (telephoneNumResult && emailResult) {
 
         return true;
+      } else {
+        e.preventDefault();
       }
 
-    },
+    }
+
   }
 
 })
