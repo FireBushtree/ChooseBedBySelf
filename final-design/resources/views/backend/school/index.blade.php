@@ -36,7 +36,7 @@
     <div v-if="status == 'edit'">
       <h1 class="text-center">Edit</h1>
 
-      {!! Form::open(['url' => '/admin/school', 'method' => 'post', 'class' => 'form-horizontal', '@submit' => 'saveDetail']) !!}
+      {!! Form::open(['url' => '/admin/school', 'method' => 'put', 'class' => 'form-horizontal', '@submit' => 'saveDetail']) !!}
 
         <div class="row add-padding-10">
           {!! Form::label('name', 'Name', ['class' => 'col-lg-offset-4 col-lg-2']) !!}

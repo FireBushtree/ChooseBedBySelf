@@ -22,7 +22,11 @@ Route::group(['prefix' => '/admin', 'namespace' => 'Backend'], function () {
     Route::get('/detail', 'UserController@detail');
     Route::post('/detail', 'UserController@saveDetail');
 
-    Route::resource('/school', 'SchoolController');
+    Route::get('/school', 'SchoolController@index');
+    Route::put('/school', 'SchoolController@edit');
+
+    Route::resource('/notice', 'NoticeController');
+
 });
 
 Route::get('/', function () {
