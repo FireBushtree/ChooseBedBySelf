@@ -1,14 +1,11 @@
 @extends('backend.app')
 
 @section('title')
-  Notice-create
+  Notice-edit
 @endsection
 
 @section('content')
-  <h1>Create</h1>
-
-  {{ Form::open(['url' => '/admin/notice', 'method' => 'post']) }}
+  {{ Form::model($notice, ['url' => '/admin/notice/' . $notice->id, 'method' => 'put']) }}
     @include('backend.notice._detail')
   {{ Form::close() }}
-
 @endsection

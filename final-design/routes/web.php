@@ -26,6 +26,7 @@ Route::group(['prefix' => '/admin', 'namespace' => 'Backend'], function () {
     Route::put('/school', 'SchoolController@edit');
 
     Route::resource('/notice', 'NoticeController');
+    Route::resource('/campus', 'CampusController');
 
 });
 

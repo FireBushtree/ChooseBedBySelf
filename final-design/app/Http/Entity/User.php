@@ -8,4 +8,9 @@ class User extends Model
 {
     protected $table = 'user';
     protected $guarded = ['role'];
+
+    public function school()
+    {
+        return $this->belongsTo('App\Http\Entity\School');
+    }
 }

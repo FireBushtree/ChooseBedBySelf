@@ -15,10 +15,9 @@
 
 <div class="form-group">
   {{ Form::label('Set end time:') }}
-  {{ Form::date('begin_at', null, ['class' => 'form-control']) }}
+  {{ Form::date('end_at', null, ['class' => 'form-control']) }}
 </div>
 
 <div class="form-group">
   {{ Form::submit('Submit', ['class' => 'btn btn-primary']) }}
-  {{ Form::submit('Submit', ['class' => 'btn btn-warning pull-right']) }}
 </div>

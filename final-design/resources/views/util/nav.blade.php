@@ -16,6 +16,17 @@
 
       <ul class="nav navbar-nav navbar-left">
         <li :class="{active: status=='school'}"><a href="{{ url('admin/school') }}">School</a></li>
+
+        <li :class="{active: status=='campus'}" class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            Campus <b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="{{ url('/admin/campus') }}">All</a></li>
+            <li><a href="{{ url('/admin/campus/create') }}">Add</a></li>
+          </ul>
+        </li>
+
         <li :class="{active: status=='academy'}"><a href="#">Academy</a></li>
 
         <li :class="{active: status=='apartment'}" class="dropdown">
@@ -35,7 +46,7 @@
           </a>
           <ul class="dropdown-menu">
             <li><a href="{{ url('/admin/notice') }}">All</a></li>
-            <li><a href="{{ url('/admin/notice/create') }}">Create</a></li>
+            <li><a href="{{ url('/admin/notice/create') }}">Add</a></li>
           </ul>
         </li>
 
