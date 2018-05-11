@@ -34,9 +34,8 @@
             Apartment <b class="caret"></b>
           </a>
           <ul class="dropdown-menu">
-            <li><a href="#">1</a></li>
-            <li><a href="#">1</a></li>
-            <li><a href="#">1</a></li>
+            <li><a href="{{ url('/admin/apartment') }}">All</a></li>
+            <li><a href="{{ url('/admin/apartment/create') }}">Add</a></li>
           </ul>
         </li>
 

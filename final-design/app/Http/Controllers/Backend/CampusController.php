@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
+use App\Http\Entity\Campus;
 use App\Http\Controllers\Controller;
 
 class CampusController extends Controller
@@ -14,7 +15,9 @@ class CampusController extends Controller
      */
     public function index()
     {
-        //
+        $campuses = Campus::where(['school_id' => session()->get('user')->school_id])->latest()->get();
+
+        return view('backend.campus.index', compact('campuses'));
     }
 
     /**
@@ -24,7 +27,7 @@ class CampusController extends Controller
      */
     public function create()
     {
-        return view('backend.campuse.create');
+        return view('backend.campus.create');
     }
 
     /**
@@ -35,7 +38,11 @@ class CampusController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $model = $request->all();
+        $model['school_id'] = session()->get('user')->school_id;
+        Campus::create($model);
+
+        return redirect('/admin/campus')->with(['msg' => 'Create campus successfully']);
     }
 
     /**
@@ -46,7 +53,9 @@ class CampusController extends Controller
      */
     public function show($id)
     {
-        //
+        $campus = Campus::findOrFail($id);
+
+        return view('backend.campus.show', compact('campus'));
     }
 
     /**
@@ -57,7 +66,9 @@ class CampusController extends Controller
      */
     public function edit($id)
     {
-        //
+        $campus = Campus::findOrFail($id);
+
+        return view('backend.campus.edit', compact('campus'));
     }
 
     /**
@@ -69,7 +80,10 @@ class CampusController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $campus = Campus::findOrFail($id);
+        $campus->update($request->all());
+
+        return redirect('/admin/campus')->with(['msg' => 'Edit campus successfully.']);
     }
 
     /**
@@ -80,6 +94,15 @@ class CampusController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $campus = Campus::findOrFail($id);
+        $campus->delete();
+
+        if ($campus->trashed()) {
+
+            return redirect('/admin/campus')->with(['msg' => 'Delete campus successfully.']);
+        } else {
+
+            return back()->with(['tip' => 'Delete campus failly.']);
+        }
     }
 }

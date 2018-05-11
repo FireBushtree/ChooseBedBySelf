@@ -11,9 +11,9 @@
 |
 */
 
-Route::group(['prefix' => '/admin', 'namespace' => 'Backend'], function () {
+Route::group(['prefix' => '/admin', 'namespace' => 'Backend', 'name' => 'admin.'], function () {
 
-    Route::get('/login', 'UserController@login');
+    Route::get('/login', 'UserController@login')->name('test');
     Route::post('/login', 'UserController@saveLogin');
     Route::get('/index', 'UserController@index');
     Route::get('/logout', 'UserController@logout');
@@ -27,6 +27,7 @@ Route::group(['prefix' => '/admin', 'namespace' => 'Backend'], function () {
 
     Route::resource('/notice', 'NoticeController');
     Route::resource('/campus', 'CampusController');
+    Route::resource('/apartment', 'ApartmentController');
 
 });
 

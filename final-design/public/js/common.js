@@ -1,5 +1,4 @@
 var Check = {
-
     /**
      * Verify the value weather it is empty.
      *
@@ -21,4 +20,15 @@ var Check = {
         return {'status': status, 'tipMessage': tipMessage};
     }
 
+}
+
+var Show = {
+    /**
+     * To show the page of resource's edit
+     *
+     * @param string url
+     */
+    jump: function (url) {
+        location.href = url;
+    }
 }

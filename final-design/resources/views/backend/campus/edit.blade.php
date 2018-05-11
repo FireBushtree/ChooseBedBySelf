@@ -1,13 +1,11 @@
 @extends('backend.app')
 
 @section('title')
-  Campus-create
+  Campus-edit
 @endsection
 
 @section('content')
-  <h1 class="text-center">Create</h1>
-
-  {{ Form::open(['url' => '/admin/campus', 'method' => 'post']) }}
+  {{ Form::model($campus, ['url' => '/admin/campus/' . $campus->id, 'method' => 'put']) }}
     @include('backend.campus._detail')
   {{ Form::close() }}
 @endsection
