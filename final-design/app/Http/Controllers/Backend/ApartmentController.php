@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Backend;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Entity\Campus;
+use App\Http\Entity\School;
 use App\Http\Entity\Apartment;
 use App\Http\Controllers\Controller;
 
@@ -16,9 +18,18 @@ class ApartmentController extends Controller
      */
     public function index()
     {
-        $campuses = session()->get('user')->school->campus;
+        $campuses = School::where(['id' => session()->get('user')->school_id])->first()->campuses;
+        $apartments = [];
 
-        return view('backend.apartment.index', compact('campuses'));
+        foreach ($campuses as $campus) {
+
+            foreach ($campus->apartments as $apartment) {
+                array_push($apartments, $apartment);
+            }
+
+        }
+
+        return view('backend.apartment.index', compact('apartments'));
     }
 
     /**
@@ -28,14 +39,19 @@ class ApartmentController extends Controller
      */
     public function create()
     {
-        $campuses = session()->get('user')->school->campus;
+        $campuses = Campus::where(['school_id' => session()->get('user')->school_id])->latest()->get();
         $campusesArray = [];
+        $floors = [];
 
         foreach($campuses as $campus) {
             $campusesArray[$campus->id] = $campus->name;
         }
 
-        return view('backend.apartment.create', compact('campusesArray'));
+        for ($i = 1; $i < 9; $i++) {
+            $floors[$i] = $i;
+        }
+
+        return view('backend.apartment.create', compact('campusesArray', 'floors'));
     }
 
     /**
@@ -59,7 +75,9 @@ class ApartmentController extends Controller
      */
     public function show($id)
     {
-        //
+        $apartment = Apartment::findOrFail($id);
+
+        return view('backend.apartment.show', compact('apartment'));
     }
 
     /**
@@ -70,7 +88,20 @@ class ApartmentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $apartment = Apartment::findOrFail($id);
+        $campuses = Campus::where(['school_id' => session()->get('user')->school_id])->latest()->get();
+        $campusesArray = [];
+        $floors = [];
+
+        foreach($campuses as $campus) {
+            $campusesArray[$campus->id] = $campus->name;
+        }
+
+        for ($i = 1; $i < 9; $i++) {
+            $floors[$i] = $i;
+        }
+
+        return view('backend.apartment.edit', compact('apartment', 'campusesArray', 'floors'));
     }
 
     /**
@@ -82,7 +113,10 @@ class ApartmentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $apartment = Apartment::findOrFail($id);
+        $apartment->update($request->all());
+
+        return redirect('/admin/apartment')->with(['msg' => 'Edit apartment successfully,']);
     }
 
     /**
@@ -93,6 +127,14 @@ class ApartmentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $apartment = Apartment::findOrFail($id);
+        $apartment->delete();
+
+        if ($apartment->trashed()) {
+            return redirect('/admin/apartment')->with(['msg' => 'Delete apartment successfully.']);
+        } else {
+            return back()->with(['msg' => 'Delete apartment failly.']);
+        }
+
     }
 }

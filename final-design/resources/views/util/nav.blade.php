@@ -39,6 +39,17 @@
           </ul>
         </li>
 
+        <li :class="{active: status=='room'}" class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            Room <b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="{{ url('/admin/room') }}">All</a></li>
+            <li><a href="{{ url('/admin/room/auto-add') }}">Auto-Add</a></li>
+            <li><a href="{{ url('/admin/room/create') }}">Add</a></li>
+          </ul>
+        </li>
+
         <li :class="{active: status=='notice'}" class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             Notice <b class="caret"></b>

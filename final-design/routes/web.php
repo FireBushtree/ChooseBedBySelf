@@ -26,9 +26,18 @@ Route::group(['prefix' => '/admin', 'namespace' => 'Backend', 'name' => 'admin.'
     Route::put('/school', 'SchoolController@edit');
 
     Route::resource('/notice', 'NoticeController');
+
     Route::resource('/campus', 'CampusController');
+
     Route::resource('/apartment', 'ApartmentController');
 
+    Route::get('/room/auto-add', 'RoomController@showAutoAdd');
+    Route::post('/room/auto-add', 'RoomController@autoAdd');
+    Route::resource('/room', 'RoomController');
+
+    Route::get('/api/apartment/{id}', 'ApiController@getApartmentById');
+    Route::get('/api/apartments', 'ApiController@getApartments');
+    Route::get('/api/apartment/{id}/rooms', 'ApiController@getRooms');
 });
 
 Route::get('/', function () {

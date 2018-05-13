@@ -11,7 +11,7 @@
 @section('content')
   <h1 class="text-center">Notices</h1>
 
-    <table class="table table-bordered">
+    <table class="table table-hover table-bordered">
       <thead>
         <tr>
           <th></th>

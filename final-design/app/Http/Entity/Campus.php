@@ -12,8 +12,15 @@ class Campus extends Model
     protected $table = 'campus';
     protected $guarded = [];
 
-    public function apartment()
+    public function apartments()
     {
         return $this->hasMany('App\Http\Entity\Apartment');
+    }
+
+    public static function getAll()
+    {
+        $campuses = self::where(['school_id' => session()->get('user')->school_id])->get();
+
+        return $campuses;
     }
 }

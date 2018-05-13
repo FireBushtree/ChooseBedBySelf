@@ -8,7 +8,7 @@ class School extends Model
 {
     protected $table = 'school';
 
-    public function Campus()
+    public function campuses()
     {
         return $this->hasMany('App\Http\Entity\Campus');
     }

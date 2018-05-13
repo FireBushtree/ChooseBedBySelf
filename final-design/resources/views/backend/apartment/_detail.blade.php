@@ -15,7 +15,7 @@
 
 <div class="form-group">
   {{ Form::label('Total floor') }}
-  {{ Form::select('floor_num', [1, 2, 3, 4, 5, 6, 7, 8], null, ['class' => 'form-control']) }}
+  {{ Form::select('floor_num', $floors, null, ['class' => 'form-control']) }}
 </div>
 
 <div class="form-group">

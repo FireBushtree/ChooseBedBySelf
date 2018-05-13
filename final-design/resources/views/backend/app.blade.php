@@ -7,6 +7,11 @@
   <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}" />
   @yield('css')
   <title>@yield('title')</title>
+  <style>
+    body {
+      background: lavender;
+    }
+  </style>
 </head>
 <body>
   @include('util.nav')
