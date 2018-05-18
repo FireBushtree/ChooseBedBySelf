@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
+use App\Http\Util\StringUtil;
+use App\Http\Entity\Bed;
 use App\Http\Entity\Room;
 use App\Http\Entity\Campus;
 use App\Http\Entity\Apartment;
@@ -158,27 +160,29 @@ class RoomController extends Controller
 
         //2. Auto add rooms and beds.
         $apartment = Apartment::findOrFail($request->apartment_id);
-        $rooms = [];
+        $beds = [];
 
-        for ($i = 0; $i < $apartment->floor_num; $i++) {
+        for ($i = 1; $i <= $apartment->floor_num; $i++) {
 
-            for ($j = 0; $j < $request->roomsNum; $j++) {
-                $room = [];
+            for ($j = 1; $j <= $request->roomsNum; $j++) {
                 $room['apartment_id'] = $apartment->id;
                 $room['max_beds'] = $request->bedsNum;
                 $room['floor_id'] = $i;
-                $room['name'] = $i . $j;
-                array_push($rooms, $room);
+                $room['name'] = $i . '-' .StringUtil::addZero($j);
+                $roomId = Room::insertGetId($room);
 
                 for ($k = 0; $k < $request->bedsNum; $k++) {
-
+                    $bed['num'] = $k + 1;
+                    $bed['room_id'] = $roomId;
+                    array_push($beds, $bed);
                 }
 
             }
 
         }
 
-        dd($rooms);
+        Bed::insert($beds);
 
+        return redirect('/admin/room')->with(['msg' => 'Auto add successfully.']);
     }
 }

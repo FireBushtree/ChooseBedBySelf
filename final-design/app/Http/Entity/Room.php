@@ -15,6 +15,6 @@ class Room extends Model
 
     public function beds()
     {
-        return $this->hasMany('App/Http/Entity/Bed');
+        return $this->hasMany('App\Http\Entity\Bed');
     }
 }

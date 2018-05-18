@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AlterNoticeTable extends Migration
+class AddUserBed extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AlterNoticeTable extends Migration
      */
     public function up()
     {
-        Schema::table('notice', function (Blueprint $table) {
-            $table->softDeletes();
+        Schema::table('bed', function (Blueprint $table) {
+            $table->integer('user_id')->nullable();
         });
     }
 
@@ -25,7 +25,7 @@ class AlterNoticeTable extends Migration
      */
     public function down()
     {
-        Schema::table('notice', function (Blueprint $table) {
+        Schema::table('bed', function (Blueprint $table) {
             //
         });
     }

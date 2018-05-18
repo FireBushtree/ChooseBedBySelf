@@ -3,7 +3,7 @@
 
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse"
-          data-target="#backup-navbar">
+              data-target="#backup-navbar">
         <span class="sr-only">Change navbar</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -15,11 +15,11 @@
     <div class="collapse navbar-collapse" id="backup-navbar">
 
       <ul class="nav navbar-nav navbar-left">
-        <li :class="{active: status=='school'}"><a href="{{ url('admin/school') }}">School</a></li>
+        <li :class="{active: status=='school'}"><a href="{{ url('admin/school') }}">学校</a></li>
 
         <li :class="{active: status=='campus'}" class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            Campus <b class="caret"></b>
+            校区 <b class="caret"></b>
           </a>
           <ul class="dropdown-menu">
             <li><a href="{{ url('/admin/campus') }}">All</a></li>
@@ -27,11 +27,9 @@
           </ul>
         </li>
 
-        <li :class="{active: status=='academy'}"><a href="#">Academy</a></li>
-
         <li :class="{active: status=='apartment'}" class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            Apartment <b class="caret"></b>
+            公寓 <b class="caret"></b>
           </a>
           <ul class="dropdown-menu">
             <li><a href="{{ url('/admin/apartment') }}">All</a></li>
@@ -41,7 +39,7 @@
 
         <li :class="{active: status=='room'}" class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            Room <b class="caret"></b>
+            房间 <b class="caret"></b>
           </a>
           <ul class="dropdown-menu">
             <li><a href="{{ url('/admin/room') }}">All</a></li>
@@ -52,7 +50,7 @@
 
         <li :class="{active: status=='notice'}" class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            Notice <b class="caret"></b>
+            通知 <b class="caret"></b>
           </a>
           <ul class="dropdown-menu">
             <li><a href="{{ url('/admin/notice') }}">All</a></li>
@@ -71,8 +69,8 @@
             <li>
               <a href="#" data-toggle="modal" data-target="#logout">Logout</a>
             </li>
-            <li><a href="{{ url('/admin/detail') }}">Personal information</a></li>
-            <li><a href="{{ url('/admin/change-password') }}">Change password</a></li>
+            <li><a href="{{ url('/admin/detail') }}">个人信息</a></li>
+            <li><a href="{{ url('/admin/change-password') }}">修改密码</a></li>
           </ul>
         </li>
       </ul>
@@ -85,18 +83,18 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <span class="modal-title">Tip</span>
+          <span class="modal-title">提示</span>
         </div>
 
         <div class="modal-body">
-          Are you sure to logout？
+          您确定要退出吗？
         </div>
 
         <div class="modal-footer">
           <button type="button" class="btn btn-warning" @click="logout">
-            <span>Sure</span>
+            <span>确定</span>
           </button>
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
         </div>
       </div>
     </div>

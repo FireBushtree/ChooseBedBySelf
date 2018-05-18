@@ -37,9 +37,9 @@ Route::group(['prefix' => '/admin', 'namespace' => 'Backend', 'name' => 'admin.'
 
     Route::get('/api/apartment/{id}', 'ApiController@getApartmentById');
     Route::get('/api/apartments', 'ApiController@getApartments');
-    Route::get('/api/apartment/{id}/rooms', 'ApiController@getRooms');
+    Route::get('/api/apartment/{id}/rooms/{floorId}', 'ApiController@getRooms');
 });
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['namespace' => 'Frontend'], function() {
+    Route::get('/', 'StudentController@login');
 });

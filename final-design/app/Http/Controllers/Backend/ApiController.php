@@ -49,8 +49,14 @@ class ApiController extends Controller
         return Apartment::find($id);
     }
 
-    public function getRooms($id)
+    public function getRooms($id, $floorId)
     {
-        return $this->getApartmentById($id)->rooms;
+        $rooms = $this->getApartmentById($id)->rooms()->where(['floor_id' => $floorId])->get();
+
+        foreach ($rooms as $room) {
+            $room['beds'] = $room->beds;
+        }
+
+        return $rooms;
     }
 }
